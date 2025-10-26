@@ -442,8 +442,61 @@ const data = [
     }
 ];
 
+const tablebody = document.getElementById('player-rows')
+for(let player of data){
+    let playerRow = document.createElement('tr');
+    for(let info in player) {
+        let playerCell = document.createElement('td');
+        let playerInfo = document.createTextNode(player[info]);
+        playerCell.appendChild(playerInfo);
+        playerRow.appendChild(playerCell);
+    }
+    tablebody.appendChild(playerRow);
 
+}
+const toggleStyleBtn = document.getElementById('dark-mode-toggle');
+toggleStyleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+})
+let rows = document.querySelectorAll('tbody tr');
+let filter = document.getElementById("team-filter")
+rows.forEach(row => {
+    let targetRow = row.getElementsByTagName('td')[1].textContent;
+    let teamOption = document.createElement("option")
+    let team = document.createTextNode(targetRow);
+    teamOption.appendChild(team);
+    filter.appendChild(teamOption);
+});
+filter.addEventListener("change", (e) => {
+    rows.forEach(row => {
+        let targetRow = row.getElementsByTagName('td')[1];
+        if(filter.value.toLowerCase() === 'all'){
+            row.style.display = "";
+        }
+        else if(targetRow.textContent.toLowerCase() === filter.value.toLowerCase()) {
+            row.style.display = "";
+        }
+        else{
+            row.style.display = "none";
+        }
 
+    })
+})
+const searchBar = document.getElementById('search');
+searchBar.addEventListener('input', (e) => {
+    rows.forEach(row => {
+        let targetRow = row.getElementsByTagName('td')[0];
+        if(searchBar.value.toLowerCase() === ''){
+            row.style.display = "";
+        }
+        else if(targetRow.textContent.toLowerCase().includes( searchBar.value.toLowerCase()),) {
+            row.style.display = "";
+        }
+        else{
+            row.style.display = "none";
+        }
+    })
+})
 
 
 
