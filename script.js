@@ -489,7 +489,7 @@ searchBar.addEventListener('input', (e) => {
         if(searchBar.value.toLowerCase() === ''){
             row.style.display = "";
         }
-        else if(targetRow.textContent.toLowerCase().includes( searchBar.value.toLowerCase()),) {
+        else if(targetRow.textContent.toLowerCase().includes( searchBar.value.toLowerCase())) {
             row.style.display = "";
         }
         else{
